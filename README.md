@@ -2,15 +2,6 @@
 
 Juego de Triki completamente funcional, jugable desde cualquier navegador, sin necesidad de instalar nada, crear cuenta ni tener conexión a internet una vez descargado.
 
-## Cómo ejecutarlo
-
-1. Descomprime el zip.
-2. Abre el archivo `index.html` con doble clic (o arrástralo a tu navegador).
-
-No requiere servidor, backend ni build. Todo corre en el navegador.
-
-> Nota: si tu navegador bloquea la carga de scripts locales con políticas muy estrictas de seguridad de archivos (poco común), abre la carpeta con una extensión tipo "Live Server" en tu editor, o ejecuta `python3 -m http.server` dentro de la carpeta y visita `http://localhost:8000`.
-
 ## Estructura del proyecto
 
 ```
@@ -26,29 +17,6 @@ triki/
     ├── ui.js              Toda la manipulación del DOM (sin reglas del juego)
     └── main.js            Punto de entrada: conecta los módulos anteriores
 ```
-
-Cada archivo JavaScript se carga como `<script>` normal (sin `import`/`export` de
-módulos ES) para que el proyecto funcione abriendo `index.html` directamente,
-sin depender de un servidor. Para evitar choques entre archivos, cada uno
-expone un único objeto global (`TrikiConstants`, `TrikiAI`, `TrikiStats`,
-`TrikiGame`, `TrikiUI`); `main.js` es el único que conoce y conecta a todos
-los demás.
-
-### Por qué está dividido así
-
-- **`game.js` no toca el DOM.** Contiene solo el tablero y las reglas
-  (¿quién ganó?, ¿es válida esta jugada?). Se puede probar o reutilizar sin
-  un navegador.
-- **`ui.js` no conoce las reglas del juego.** Solo sabe pintar lo que le
-  pasan: un tablero, un mensaje de estado, un marcador. No decide nada.
-- **`ai.js` es un módulo aislado.** Expone una única función,
-  `getBestMove(board, difficulty)`, que recibe el tablero actual y devuelve
-  el índice (0–8) donde la máquina debe jugar. No sabe nada de HTML ni CSS.
-- **`stats.js` encapsula `localStorage`.** Si en el futuro quisieras guardar
-  las estadísticas en un servidor en vez del navegador, solo este archivo
-  cambiaría.
-- **`main.js`** es el "pegamento": escucha los clics, le pide una jugada a
-  la IA, actualiza el estado del juego y le pide a la UI que lo refleje.
 
 ## Cómo funciona el juego
 
