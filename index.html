@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Triki</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- PANTALLA INICIAL -->
+  <section id="screen-start" class="screen active card" aria-labelledby="titulo">
+    <h1 id="titulo">Triki</h1>
+    <p class="subtitle">Juega contra la máquina y demuestra tu estrategia.</p>
+
+    <fieldset style="border:none; padding:0; margin:0 0 18px;">
+      <legend class="sr-only">Selecciona el nivel de dificultad</legend>
+      <div class="levels" id="level-list" role="radiogroup" aria-label="Nivel de dificultad"></div>
+    </fieldset>
+
+    <button class="btn btn-primary" id="btn-jugar">Jugar</button>
+  </section>
+
+  <!-- PANTALLA DE JUEGO -->
+  <section id="screen-game" class="screen card" aria-labelledby="titulo-juego">
+    <h1 id="titulo-juego" style="font-size:1.3rem;">Triki — <span id="nivel-actual-label"></span></h1>
+
+    <div class="status-row" aria-live="polite">
+      <span id="thinking-dot" class="thinking-dot" hidden aria-hidden="true"></span>
+      <span id="status-text" class="status-text">Tu turno</span>
+    </div>
+
+    <div class="board" id="board" role="grid" aria-label="Tablero de Triki 3 por 3"></div>
+
+    <div class="scoreboard" aria-label="Marcador de la sesión">
+      <div class="score-item tu">
+        <div class="score-label">Tú</div>
+        <div class="score-value" id="score-tu">0</div>
+      </div>
+      <div class="score-item maquina">
+        <div class="score-label">Máquina</div>
+        <div class="score-value" id="score-maquina">0</div>
+      </div>
+      <div class="score-item empates">
+        <div class="score-label">Empates</div>
+        <div class="score-value" id="score-empates">0</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="controls-row">
+        <button class="btn btn-primary" id="btn-nueva-partida">Nueva partida</button>
+        <button class="btn btn-secondary" id="btn-cambiar-dificultad">Cambiar dificultad</button>
+      </div>
+      <div class="reset-row">
+        <button class="btn-danger-text" id="btn-reiniciar-stats">Reiniciar estadísticas</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box" role="dialog" aria-modal="true" aria-labelledby="confirm-text">
+    <p id="confirm-text">¿Seguro que quieres borrar las estadísticas? Esta acción no se puede deshacer.</p>
+    <div class="confirm-actions">
+      <button class="btn btn-secondary" id="btn-cancelar-reset">Cancelar</button>
+      <button class="btn btn-primary" id="btn-confirmar-reset" style="background:var(--rojo);">Borrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Orden importante: cada módulo se apoya en el anterior -->
+<script src="js/constants.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/game.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
