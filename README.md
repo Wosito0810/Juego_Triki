@@ -2,6 +2,8 @@
 
 Juego de Triki completamente funcional, jugable desde cualquier navegador, sin necesidad de instalar nada, crear cuenta ni tener conexión a internet una vez descargado.
 
+## Autor: David Santiago Vargas Parra
+
 ## Estructura del proyecto
 
 ```
@@ -80,3 +82,4 @@ relativas y un tablero en `grid` cuyo tamaño de fuente se adapta con
 `clamp()`, por lo que se ve bien tanto en móvil como en escritorio, sin
 scroll horizontal y con casillas suficientemente grandes para tocar con
 el dedo.
+
